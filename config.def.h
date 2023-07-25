@@ -177,9 +177,6 @@ static const char *dmenushut[] = { "dmenu_shut", "-fn", dmenufont,
 static const char *dmenusplain[] = { "dmenu_splain", "-fn", dmenufont,
 	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
 	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };
-static const char *dmenucfg[] = { "dmenu_cfg", "-fn", dmenufont,
-	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
-	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };
 static const char *dmenunetcon[] = { "dmenu_rdp_ssh", "-fn", dmenufont,
 	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
 	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };
@@ -187,9 +184,6 @@ static const char *dmenukeyb[] = { "dmenu_keyboard", "-fn", dmenufont,
 	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
 	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };
 static const char *dmenuovpn[] = { "dmenu_ovpn", "-fn", dmenufont,
-	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
-	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };
-static const char *dmenuqemu[] = { "dmenu_qemu", "-fn", dmenufont,
 	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
 	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };
 static const char *dmenuemoji[] = { "dmenu_emoji", "-nb", theme_col_fg, "-nf",
@@ -212,7 +206,11 @@ static const char *file_manager_gui[]  = { "nautilus", NULL };
 static const char *networkMange[]  = { "st", "nmtui", NULL };
 static const char *music[]  = { "st", "mocp", NULL };
 
+# if defined(_LIVE_MODE_)
+static const char *browser[]  = { "chromium", "--no-sandbox", NULL };
+# else
 static const char *browser[]  = { "vivaldi-stable", NULL };
+# endif
 
 static const char *wireshark[] = { "wireshark", NULL };
 static const char *burp_suite[] = { "BurpSuitePro", NULL };
@@ -237,7 +235,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd_tmux } },
 	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_v,      spawn,          {.v = dmenuqemu } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockscreen} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = networkMange} },
@@ -252,7 +249,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,      spawn,          {.v = news_feed } },
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = keepass } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = dmenusplain } },
-	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = dmenucfg } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = dmenuemoji } },
 	{ MODKEY,                       XK_a,      spawn,          {.v = music } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenukeyb } },

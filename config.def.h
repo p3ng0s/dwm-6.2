@@ -57,12 +57,12 @@ static const char *(stup_prgs[13][7])    = {   // [Number_programs][Number_args]
 	{ "blueman-applet",     NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "feh --bg-fill $HOME/.wallpaper.png", NULL,   NULL,    NULL, NULL },
 	{ "setxkbmap",          "-option",     "caps:escape",                NULL,   NULL,    NULL, NULL },
-	{ "bash",               "-c",          "bash $HOME/.dwm/bar.sh",     NULL,   NULL,    NULL, NULL },
+	{ "bash",               "-c",          "bash /etc/p3ng0s/bar.sh",     NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/xautolock", "-locker",     "i3lock-fancy -p -t \"Oh hell no!\"", "-time", "15",  NULL },
 	{ "/usr/lib/notification-daemon-1.0/notification-daemon",  NULL,     NULL, NULL, NULL, NULL, NULL },
 	{ "/usr/bin/flameshot", NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/conky",     NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
-	{ "bash",               "-c",          "/usr/bin/tint2 -c $HOME/.tint2rc", NULL,   NULL,    NULL, NULL },
+	{ "bash",               "-c",          "/usr/bin/tint2 -c /etc/p3ng0s/tint2conf", NULL,   NULL,    NULL, NULL },
 	{ "/usr/local/bin/finder.sh", NULL,    NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/redshift",  "-l48.856613:2.352222", "-b",               "1.0:0.6", NULL,  NULL, NULL },
 # if defined(_LIVE_MODE_)
@@ -164,8 +164,8 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-//static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", "-theme",
-//	"/home/p4p1/.dwm/rofi/orange-theme.rasi", NULL };
+static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", "-theme",
+	"/etc/p3ng0s/rofi.rasi", NULL };
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont,
@@ -195,7 +195,6 @@ static const char *graphicalmenu[] = { "skippy-xd", NULL };
 static const char *xmenucmd[]  = { "xmenu_run","-fn", dmenufont, "-nb", theme_col_fg,
 	"-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
 	"-bc", theme_col_bg, NULL };
-static const char *jgmenucmd[] = { "jgmenu_run", NULL };
 
 static const char *termcmd[]  = { "st", NULL };
 static const char *termcmd_tmux[]  = { "st", "tmux", NULL };
@@ -294,8 +293,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 	{ 0, XK_Print, spawn, {.v = prtscrcmd } },
-	{ 0, XK_Menu, spawn, {.v = xmenucmd} },
-	{ 0, XK_Super_L, spawn, {.v = jgmenucmd} },
+	{ 0, XK_Menu, spawn, {.v = xmenucmd } },
+	{ 0, XK_Super_L, spawn, {.v = roficmd } },
 	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
 	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
 	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },

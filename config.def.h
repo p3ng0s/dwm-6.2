@@ -58,7 +58,7 @@ static const char *(stup_prgs[13][7])    = {   // [Number_programs][Number_args]
 	{ "bash",               "-c",          "feh --bg-fill $HOME/.wallpaper.png", NULL,   NULL,    NULL, NULL },
 	{ "setxkbmap",          "-option",     "caps:escape",                NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "bash /etc/p3ng0s/bar.sh",     NULL,   NULL,    NULL, NULL },
-	{ "/usr/bin/xautolock", "-locker",     "i3lock-fancy -p -t \"Oh hell no!\"", "-time", "15",  NULL },
+	{ "/usr/bin/xautolock", "-locker",     "/etc/p3ng0s/locker.sh",      "-time", "15",  NULL },
 	{ "/usr/lib/notification-daemon-1.0/notification-daemon",  NULL,     NULL, NULL, NULL, NULL, NULL },
 	{ "/usr/bin/flameshot", NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/conky",     NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
@@ -66,7 +66,7 @@ static const char *(stup_prgs[13][7])    = {   // [Number_programs][Number_args]
 	{ "/usr/local/bin/finder.sh", NULL,    NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/redshift",  "-l48.856613:2.352222", "-b",               "1.0:0.6", NULL,  NULL, NULL },
 # if defined(_LIVE_MODE_)
-	{ "bash",               "-c",          "sleep 5; kdesu/usr/bin/calamares", NULL,   NULL,   NULL, NULL },
+	{ "bash",               "-c",          "sleep 5; sudo /usr/bin/calamares", NULL,   NULL,   NULL, NULL },
 # endif
 	{ NULL,                 NULL,          NULL,                         NULL,   NULL,    NULL, NULL }
 };

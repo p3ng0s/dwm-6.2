@@ -251,7 +251,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_a,      spawn,          {.v = music } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenukeyb } },
 	{ MODKEY|ShiftMask,             XK_o,      spawn,          {.v = dmenuovpn } },
-	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = dmenunetcon } },
 	{ MODKEY,                       XK_x,      spawn,          {.v = flameshot } },
 	{ MODKEY,                       XK_Tab,    spawn,          {.v = graphicalmenu } },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = burp_suite } },

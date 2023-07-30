@@ -176,9 +176,6 @@ static const char *dmenushut[] = { "dmenu_shut", "-fn", dmenufont,
 static const char *dmenusplain[] = { "dmenu_splain", "-fn", dmenufont,
 	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
 	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };
-static const char *dmenunetcon[] = { "dmenu_rdp_ssh", "-fn", dmenufont,
-	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
-	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };
 static const char *dmenukeyb[] = { "dmenu_keyboard", "-fn", dmenufont,
 	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
 	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };

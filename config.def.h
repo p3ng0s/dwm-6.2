@@ -213,7 +213,7 @@ static const char *keepass[] = { "keepass", NULL };
 
 static const char *soundManage[] = { "pavucontrol", NULL };
 
-static const char *lockscreen[]  = { "i3lock-fancy", "-p", "-t", "Oh hell no!", NULL };
+static const char *lockscreen[]  = { "i3lock-fancy", "-p", "-t", "Oh hell no!", "-f", "Hack Regular Nerd Font Complete", NULL };
 
 static const char *mutecmd[] = { "sound.sh", "=", NULL };
 static const char *volupcmd[] = { "sound.sh", "+", NULL };

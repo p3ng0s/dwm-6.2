@@ -61,7 +61,7 @@ static const char *(stup_prgs[12][7])    = {   // [Number_programs][Number_args]
 	{ "/usr/bin/xautolock", "-locker",     "/etc/p3ng0s/locker.sh",      "-time", "15",  NULL },
 	{ "/usr/lib/notification-daemon-1.0/notification-daemon",  NULL,     NULL, NULL, NULL, NULL, NULL },
 	{ "/usr/bin/flameshot", NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
-	{ "/usr/bin/conky",     NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
+	{ "bash",               "-c",          "/usr/bin/conky -c /etc/p3ng0s/conkyconf",   NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "/usr/bin/tint2 -c /etc/p3ng0s/tint2conf", NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/redshift",  "-l48.856613:2.352222", "-b",               "1.0:0.6", NULL,  NULL, NULL },
 # if defined(_LIVE_MODE_)
@@ -110,18 +110,8 @@ static const Rule rules[] = {
 	*/
 	/* class      instance    title       tags mask  iscentered isfloating monitor */
 	// Floating windows
-	{ "Gimp",      NULL,       NULL,          0,        0,        1,         -1 },
-	{ "Ghidra",    NULL,       NULL,          0,        0,        1,         -1 },
-	{ "OWASP ZAP", NULL,       NULL,          0,        0,        1,         -1 },
 	{ "conky",     NULL,       NULL,          0,        0,        1,         -1 },
-	{ "chromium-browser", NULL, NULL,         0,        0,        1,         -1 },
-	{ "Audacity",  NULL,       NULL,          0,        0,        1,         -1 },
-	{ "sonic-visualiser", NULL, NULL,         0,        0,        1,         -1 },
-	{ "TeamViewer",  NULL,     NULL,          0,        0,        1,         -1 },
-	{ "GitKraken",   NULL,     NULL,          0,        0,        1,         -1 },
-	{ "calibre",     NULL,     NULL,          0,        0,        1,         -1 },
-	{ "Fritzing",    NULL,     NULL,          0,        0,        1,         -1 },
-	{ "Tor Browser", NULL,     NULL,          0,        0,        1,         -1 },
+	{ "ripdrag",    NULL,     NULL,          0,        0,        1,         -1 },
 	{ "Tint2",       NULL,     NULL,          511,      0,        1,         -1 },
 	// Swalow windows
 	{ "st",       NULL,     NULL,             0,        0,        0,         -1 },

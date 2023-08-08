@@ -118,7 +118,7 @@ static const Rule rules[] = {
 	{ NULL,       NULL,     "tmux",           0,        0,        0,         -1 },
 	{ "vivaldi-stable",        NULL, NULL,    0,        0,        0,         -1 },
 	// Special tabs windows
-	{ "firefox",  NULL,        NULL,          1 << 7,   0,        0,         -1 },
+	//{ "firefox",  NULL,        NULL,          1 << 7,   0,        0,         -1 },
 	// floating centered windows
 	{ NULL,        NULL,       "ranger",      0,        1,        1,         -1 },
 	{ NULL,        NULL,       "newsboat",    0,        1,        1,         -1 },
@@ -191,11 +191,7 @@ static const char *file_manager_gui[]  = { "nautilus", NULL };
 static const char *networkMange[]  = { "st", "nmtui", NULL };
 static const char *music[]  = { "st", "mocp", NULL };
 
-# if defined(_LIVE_MODE_)
-static const char *browser[]  = { "chromium", "--no-sandbox", NULL };
-# else
-static const char *browser[]  = { "vivaldi-stable", NULL };
-# endif
+static const char *browser[]  = { "firefox", NULL };
 
 static const char *wireshark[] = { "wireshark", NULL };
 static const char *burp_suite[] = { "BurpSuitePro", NULL };

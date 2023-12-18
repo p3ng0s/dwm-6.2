@@ -202,6 +202,8 @@ static const char *keepass[] = { "keepass", NULL };
 
 static const char *soundManage[] = { "pavucontrol", NULL };
 
+static const char *onscreen_kb[] = { "svkbd-mobile-intl", NULL };
+
 static const char *lockscreen[]  = { "i3lock-fancy", "-p", "-t", "Oh hell no!", "-f", "Hack Regular Nerd Font Complete", NULL };
 
 static const char *mutecmd[] = { "sound.sh", "=", NULL };
@@ -225,8 +227,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = wireshark } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = soundManage} },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenushut} },
-	{ MODKEY|ShiftMask,             XK_j,      spawn,          {.v = monMin } },
-	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = monMax } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = file_manager } },
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = file_manager_gui } },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = email_viewer } },
@@ -267,6 +267,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ MODKEY,                       XK_n,      togglealttag,   {0} },
+	{ MODKEY|ShiftMask,             XK_Up,     spawn,          {.v = volupcmd} },
+	{ MODKEY|ShiftMask,             XK_Down,   spawn,          {.v = voldowncmd} },
+	{ MODKEY|ShiftMask,             XK_Left,   spawn,          {.v = monMin } },
+	{ MODKEY|ShiftMask,             XK_Right,  spawn,          {.v = monMax } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -281,8 +285,13 @@ static Key keys[] = {
 	{ 0, XK_Menu, spawn, {.v = xmenucmd } },
 	{ 0, XK_Super_L, spawn, {.v = roficmd } },
 	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
-	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
-	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
+
+	/***** Stealing these keys for the pine phone port ****/
+	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = onscreen_kb } },
+	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = roficmd } },
+	{ 0, XF86XK_PowerOff, spawn, { .v =  termcmd  } },
+	/***** Stealing these keys for the pine phone port ****/
+
 	{ 0, XF86XK_MonBrightnessUp, spawn, {.v = monMax} },
 	{ 0, XF86XK_MonBrightnessDown, spawn, {.v = monMin} },
 };

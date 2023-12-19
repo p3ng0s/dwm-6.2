@@ -154,7 +154,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *svkbdcmd[] = { "svkbd-mobile-intl", "-fn", dmenufont, "-g", "\n", NULL };
+static const char *svkbdcmd[] = { "svkbd-p3ng0s", "-fn", dmenufont, "-g", "\n", NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", "-theme",
 	"/etc/p3ng0s/rofi.rasi", NULL };
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */

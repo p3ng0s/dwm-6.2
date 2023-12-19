@@ -14,6 +14,7 @@ static const int sidepad            = 0;       /* horizontal padding of bar */
 static const char *panel_str        = "tint2";
 static const char *fonts[]          = { "Hack Nerd Font Mono:size=13" };
 static const char dmenufont[]       = "Hack Nerd Font Mono:size=12";
+static const int kb_height_div      = 3;      /* height of the keyboard */
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -153,10 +154,10 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
+static const char *svkbdcmd[] = { "svkbd-mobile-intl", "-fn", dmenufont, "-g", "\n", NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", "-theme",
 	"/etc/p3ng0s/rofi.rasi", NULL };
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont,
 	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
 	"-h", "27", "-bw", "0", NULL };
@@ -201,8 +202,6 @@ static const char *burp_suite[] = { "BurpSuitePro", NULL };
 static const char *keepass[] = { "keepass", NULL };
 
 static const char *soundManage[] = { "pavucontrol", NULL };
-
-static const char *onscreen_kb[] = { "svkbd-mobile-intl", NULL };
 
 static const char *lockscreen[]  = { "i3lock-fancy", "-p", "-t", "Oh hell no!", "-f", "Hack Regular Nerd Font Complete", NULL };
 
@@ -287,7 +286,7 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
 
 	/***** Stealing these keys for the pine phone port ****/
-	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = onscreen_kb } },
+	{ 0, XF86XK_AudioLowerVolume, openkeyboard, {0} },
 	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = roficmd } },
 	{ 0, XF86XK_PowerOff, spawn, { .v =  termcmd  } },
 	/***** Stealing these keys for the pine phone port ****/

@@ -8,7 +8,7 @@ void fibonacci(Monitor *mon, int s) {
 	if(n == 1){
 		c = nexttiled(mon->clients);
 		resize(c, mon->wx + mon->gappx, mon->wy + mon->gappx, (mon->ww - 2 *
-					c->bw) - 2 * mon->gappx, (mon->wh - 2 * c->bw) - 2 *
+					c->bw) - 2 * mon->gappx, ((mon->wh - mon->gap_keyboard) - 2 * c->bw) - 2 *
 				mon->gappx, 0);
 		return;
 	}
@@ -16,7 +16,7 @@ void fibonacci(Monitor *mon, int s) {
 	nx = mon->wx;
 	ny = mon->gappx;
 	nw = mon->ww;
-	nh = mon->wh;
+	nh = mon->wh - mon->gap_keyboard;
 
 	for(i = 0, c = nexttiled(mon->clients); c; c = nexttiled(c->next)) {
 		if((i % 2 && nh / 2 > 2 * c->bw)

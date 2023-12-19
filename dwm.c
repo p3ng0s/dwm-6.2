@@ -124,6 +124,7 @@ struct Monitor {
 	int by;               /* bar geometry */
 	int mx, my, mw, mh;   /* screen size */
 	int wx, wy, ww, wh;   /* window area  */
+	int gap_keyboard;
 	int gappx;            /* gaps between windows */
 	unsigned int seltags;
 	unsigned int sellt;
@@ -245,6 +246,7 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void xinitvisual();
 static void zoom(const Arg *arg);
+static void openkeyboard(const Arg *arg);
 static void centeredfloatingmaster(Monitor *m);
 
 /* variables */
@@ -1220,7 +1222,7 @@ monocle(Monitor *m)
 	if (n > 0) /* override layout symbol */
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
-		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, (m->wh - m->gap_keyboard) - 2 * c->bw, 0);
 }
 
 void
@@ -1811,11 +1813,11 @@ tile(Monitor *m)
 	}
 	for(i = 0, my = ty = m->gappx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
 		if (i < m->nmaster) {
-			h = (m->wh - my) / (MIN(n, m->nmaster) - i) - m->gappx;
+			h = ((m->wh - m->gap_keyboard) - my) / (MIN(n, m->nmaster) - i) - m->gappx;
 			resize(c, m->wx + m->gappx, m->wy + my, mw - (2*c->bw) - m->gappx*(5-ns)/2, h - (2*c->bw), False);
 			my += HEIGHT(c) + m->gappx;
 		} else {
-			h = (m->wh - ty) / (n - i) - m->gappx;
+			h = ((m->wh - m->gap_keyboard) - ty) / (n - i) - m->gappx;
 			resize(c, m->wx + mw + m->gappx/ns, m->wy + ty, m->ww - mw - (2*c->bw) - m->gappx*(5-ns)/2, h - (2*c->bw), False);
 			ty += HEIGHT(c) + m->gappx;
 		}
@@ -2297,6 +2299,50 @@ zoom(const Arg *arg)
 	pop(c);
 }
 
+void
+openkeyboard(const Arg *arg)
+{
+	struct sigaction sa;
+	static int       pid = 0;
+	static int       i = 0;
+	static char      size_kb[20] = {
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	};
+
+	if (selmon->gap_keyboard != 0)
+		selmon->gap_keyboard = 0;
+	if (pid != 0) {
+		kill(pid, SIGKILL);
+		pid = 0;
+		selmon->gap_keyboard = 0;
+	} else {
+		for (i = 0; svkbdcmd[i]; i++)
+			if (svkbdcmd[i][0] == '\n')
+				break;
+		if (svkbdcmd[i] && svkbdcmd[i][0] == '\n') {
+			memset(size_kb, 0, 20);
+			sprintf(size_kb, "%dx%d", sw, sh / kb_height_div);
+			svkbdcmd[i] = size_kb;
+		}
+		if ((pid = fork()) == 0) {
+			if (dpy)
+				close(ConnectionNumber(dpy));
+			setsid();
+
+			sigemptyset(&sa.sa_mask);
+			sa.sa_flags = 0;
+			sa.sa_handler = SIG_DFL;
+			sigaction(SIGCHLD, &sa, NULL);
+
+			execvp(((char **)svkbdcmd)[0], (char **)svkbdcmd);
+			die("dwm: execvp '%s' failed:", ((char **)svkbdcmd)[0]);
+		} else {
+			selmon->gap_keyboard = sh / 3;
+		}
+	}
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -2340,18 +2386,18 @@ centeredfloatingmaster(Monitor *m)
 	/* initialize nmaster area */
 	if (n > m->nmaster) {
 		/* go mfact box in the center if more than nmaster clients */
-		if (m->ww > m->wh) {
+		if (m->ww > (m->wh - m->gap_keyboard)) {
 			mw = m->nmaster ? m->ww * m->mfact : 0;
-			mh = m->nmaster ? m->wh * 0.9 : 0;
+			mh = m->nmaster ? (m->wh - m->gap_keyboard) * 0.9 : 0;
 		} else {
-			mh = m->nmaster ? m->wh * m->mfact : 0;
+			mh = m->nmaster ? (m->wh - m->gap_keyboard) * m->mfact : 0;
 			mw = m->nmaster ? m->ww * 0.9 : 0;
 		}
 		mx = mxo = (m->ww - mw) / 2 + m->gappx;
-		my = myo = (m->wh - mh) / 2;
+		my = myo = ((m->wh - m->gap_keyboard) - mh) / 2;
 	} else {
 		/* go fullscreen if all clients are in the master area */
-		mh = m->wh;
+		mh = (m->wh - m->gap_keyboard);
 		mw = m->ww - m->gappx;
 		mx = mxo = 0;
 		my = myo = 0;
@@ -2369,7 +2415,7 @@ centeredfloatingmaster(Monitor *m)
 		/* stack clients are stacked horizontally */
 		w = (m->ww - tx) / (n - i);
 		resize(c, m->wx + tx + m->gappx, m->wy + m->gappx, w - (2*c->bw) - 2*m->gappx,
-			m->wh - (2*c->bw) - 2*m->gappx, 0);
+			(m->wh - m->gap_keyboard) - (2*c->bw) - 2*m->gappx, 0);
 		tx += WIDTH(c) + m->gappx;
 	}
 }

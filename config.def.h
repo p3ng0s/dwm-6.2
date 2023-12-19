@@ -14,6 +14,7 @@ static const int sidepad            = 0;       /* horizontal padding of bar */
 static const char *panel_str        = "tint2";
 static const char *fonts[]          = { "Hack Nerd Font Mono:size=13" };
 static const char dmenufont[]       = "Hack Nerd Font Mono:size=12";
+static const char svkbdfont[]       = "Hack Nerd Font Mono:size=22";
 static const int kb_height_div      = 3;      /* height of the keyboard */
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -154,7 +155,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *svkbdcmd[] = { "svkbd-p3ng0s", "-fn", dmenufont, "-g", "\n", NULL };
+static const char *svkbdcmd[] = { "svkbd-p3ng0s", "-fn", svkbdfont, "-g", "\n", NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", "-theme",
 	"/etc/p3ng0s/rofi.rasi", NULL };
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */

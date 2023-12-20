@@ -12,6 +12,7 @@ static const int user_bh            = 26;        /* 0 means that dwm will calcul
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
 static const char *panel_str        = "tint2";
+static const char *kb_str           = "svkbd";
 static const char *fonts[]          = { "Hack Nerd Font Mono:size=13" };
 static const char dmenufont[]       = "Hack Nerd Font Mono:size=12";
 static const char svkbdfont[]       = "Hack Nerd Font Mono:size=22";
@@ -115,6 +116,7 @@ static const Rule rules[] = {
 	{ "conky",     NULL,       NULL,          0,        0,        1,         -1 },
 	{ "ripdrag",    NULL,     NULL,          0,        0,        1,         -1 },
 	{ "Tint2",       NULL,     NULL,          511,      0,        1,         -1 },
+	{ "svkbd",       NULL,     NULL,          511,      0,        1,         -1 },
 	// Swalow windows
 	{ "st",       NULL,     NULL,             0,        0,        0,         -1 },
 	{ NULL,       NULL,     "tmux",           0,        0,        0,         -1 },

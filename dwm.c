@@ -802,7 +802,7 @@ drawbar(Monitor *m)
 	}
 
 	for (c = m->clients; c; c = c->next) {
-		if (strcmp(c->name, panel_str))
+		if (strcmp(c->name, panel_str) && strcmp(c->name, kb_str))
 			occ |= c->tags == 255 ? 0 : c->tags;
 		if (c->isurgent)
 			urg |= c->tags;
@@ -829,7 +829,7 @@ drawbar(Monitor *m)
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
 
 	if ((w = m->ww - sw - x) > bh) {
-		if (m->sel && strcmp(m->sel->name, panel_str)) {
+		if (m->sel && (strcmp(m->sel->name, panel_str) && strcmp(m->sel->name, kb_str))) {
 			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
 			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
 			if (m->sel->isfloating)
@@ -885,7 +885,7 @@ focus(Client *c)
 {
 	if (!c || !ISVISIBLE(c)) {
 		for (c = selmon->stack; c && !ISVISIBLE(c); c = c->snext);
-		if (c && !strcmp(c->name, panel_str))
+		if (c && (!strcmp(c->name, panel_str) || !strcmp(c->name, kb_str)))
 			c = NULL;
 	}
 	if (selmon->sel && selmon->sel != c)
@@ -1104,7 +1104,7 @@ keypress(XEvent *e)
 void
 killclient(const Arg *arg)
 {
-	if (!selmon->sel || !strcmp(selmon->sel->name, panel_str))
+	if (!selmon->sel || (!strcmp(selmon->sel->name, panel_str) || !strcmp(selmon->sel->name, kb_str)))
 		return;
 	if (!sendevent(selmon->sel, wmatom[WMDelete])) {
 		XGrabServer(dpy);
@@ -1150,7 +1150,7 @@ manage(Window w, XWindowAttributes *wa)
 	/* only fix client y-offset, if the client center might cover the bar */
 	c->y = MAX(c->y, ((c->mon->by == c->mon->my) && (c->x + (c->w / 2) >= c->mon->wx)
 		&& (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
-	if (!strcmp(c->name, panel_str))
+	if (!strcmp(c->name, panel_str) || !strcmp(c->name, kb_str))
 		c->bw = 0;
 	else
 		c->bw = borderpx;
@@ -1743,7 +1743,7 @@ showhide(Client *c)
 		showhide(c->snext);
 	} else {
 		/* hide clients bottom up */
-		if (strcmp(c->name, panel_str)) {
+		if (strcmp(c->name, panel_str) && strcmp(c->name, kb_str)) {
 			XMoveWindow(dpy, c->win, WIDTH(c) * -2, c->y);
 		}
 		showhide(c->snext);
@@ -1777,7 +1777,7 @@ spawn(const Arg *arg)
 void
 tag(const Arg *arg)
 {
-	if (selmon && selmon->sel && !strcmp(selmon->sel->name, panel_str))
+	if (selmon && selmon->sel && (!strcmp(selmon->sel->name, panel_str) || !strcmp(selmon->sel->name, kb_str)))
 		return;
 	if (selmon->sel && arg->ui & TAGMASK) {
 		selmon->sel->tags = arg->ui & TAGMASK;

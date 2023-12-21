@@ -158,6 +158,7 @@ static void arrangemon(Monitor *m);
 static void attach(Client *c);
 static void attachstack(Client *c);
 static void buttonpress(XEvent *e);
+static void buttonrelease(XEvent *e);
 static void checkotherwm(void);
 static void cleanup(void);
 static void cleanupmon(Monitor *mon);
@@ -259,10 +260,18 @@ static int bh, blw = 0;      /* bar geometry */
 static int lrpad;            /* sum of left and right padding for text */
 static int vp;               /* vertical padding for bar */
 static int sp;               /* side padding for bar */
+/* variables for swiping */
+static int current_tag = 0;
+static int start_x = -1, start_y = -1;
+static int end_x = -1, end_y = -1;
+static int swiping = 0;
+#define SWIPE_THRESHOLD 20
+#define SWIPE_ZONE 100
 static int (*xerrorxlib)(Display *, XErrorEvent *);
 static unsigned int numlockmask = 0;
 static void (*handler[LASTEvent]) (XEvent *) = {
 	[ButtonPress] = buttonpress,
+	[ButtonRelease] = buttonrelease,
 	[ClientMessage] = clientmessage,
 	[ConfigureRequest] = configurerequest,
 	[ConfigureNotify] = configurenotify,
@@ -450,6 +459,13 @@ buttonpress(XEvent *e)
 	Monitor *m;
 	XButtonPressedEvent *ev = &e->xbutton;
 
+	// set the swipe variables...
+	if ((e->xbutton.x < SWIPE_ZONE) || (e->xbutton.x > (sw - SWIPE_ZONE)) ||
+			(e->xbutton.y < SWIPE_ZONE) || (e->xbutton.y > (sh - SWIPE_ZONE))) {
+		start_x = e->xbutton.x;
+		start_y = e->xbutton.y;
+		swiping = 1;
+	}
 	click = ClkRootWin;
 	/* focus monitor if necessary */
 	if ((m = wintomon(ev->window)) && m != selmon) {
@@ -486,6 +502,14 @@ buttonpress(XEvent *e)
 		if (click == buttons[i].click && buttons[i].func && buttons[i].button == ev->button
 		&& CLEANMASK(buttons[i].mask) == CLEANMASK(ev->state))
 			buttons[i].func(click == ClkTagBar && buttons[i].arg.i == 0 ? &arg : &buttons[i].arg);
+}
+
+void
+buttonrelease(XEvent *e)
+{
+	start_x = end_x = -1;
+	start_y = end_y = -1;
+	swiping = 0;
 }
 
 void
@@ -1232,6 +1256,34 @@ motionnotify(XEvent *e)
 	Monitor *m;
 	XMotionEvent *ev = &e->xmotion;
 
+	if (swiping) {
+		end_x = e->xmotion.x;
+		end_y = e->xmotion.y;
+
+		if (end_x - start_x <= -SWIPE_THRESHOLD) {
+			swiping = 0;
+			end_x = start_x = end_y = start_y = -1;
+			if (current_tag < 9) {
+				Arg abc = {.ui = (1 << (current_tag))};
+				view(&abc);
+			}
+		} else if (end_x - start_x >= SWIPE_THRESHOLD) {
+			swiping = 0;
+			end_x = start_x = end_y = start_y = -1;
+			if (current_tag > 1) {
+				Arg abc = {.ui = (1 << (current_tag - 2))};
+				view(&abc);
+			}
+		} else if (end_y - start_y <= -SWIPE_THRESHOLD) {
+			printf("bottom to top\n");
+			swiping = 0;
+			end_x = start_x = end_y = start_y = -1;
+		} else if (end_y - start_y >= SWIPE_THRESHOLD) {
+			printf("top to bottom\n");
+			swiping = 0;
+			end_x = start_x = end_y = start_y = -1;
+		}
+	}
 	if (ev->window != root)
 		return;
 	if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
@@ -1709,7 +1761,7 @@ setup(void)
 	wa.cursor = cursor[CurNormal]->cursor;
 	wa.event_mask = SubstructureRedirectMask|SubstructureNotifyMask
 		|ButtonPressMask|PointerMotionMask|EnterWindowMask
-		|LeaveWindowMask|StructureNotifyMask|PropertyChangeMask;
+		|LeaveWindowMask|StructureNotifyMask|PropertyChangeMask|ButtonReleaseMask;
 	XChangeWindowAttributes(dpy, root, CWEventMask|CWCursor, &wa);
 	XSelectInput(dpy, root, wa.event_mask);
 	grabkeys();
@@ -2173,6 +2225,8 @@ updatewmhints(Client *c)
 void
 view(const Arg *arg)
 {
+	current_tag = 0;
+	while (((arg->ui >> current_tag++) & 1) == 0);
 	if ((arg->ui & TAGMASK) == selmon->tagset[selmon->seltags])
 		return;
 	selmon->seltags ^= 1; /* toggle sel tagset */

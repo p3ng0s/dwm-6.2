@@ -307,7 +307,7 @@ static Button buttons[] = {
 	{ ClkWinTitle,          0,                Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,                Button1,        spawn,          {.v = dmenushut } },
 	{ ClkStatusText,        0,                Button2,        spawn,          {.v = graphicalmenu } },
-	{ ClkRootWin,           0,                Button1,        spawn,          {.v = xmenucmd } },
+	{ ClkRootWin,           0,                Button3,        spawn,          {.v = xmenucmd } },
 	{ ClkClientWin,         MODKEY,           Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,           Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY|ShiftMask, Button1,        resizemouse,    {0} },

@@ -2357,8 +2357,8 @@ void
 openkeyboard(const Arg *arg)
 {
 	struct sigaction sa;
-	int       i = 0;
 	static int       pid = 0;
+	static int       i = 0;
 	static char      size_kb[20] = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -2371,14 +2371,14 @@ openkeyboard(const Arg *arg)
 		pid = 0;
 		selmon->gap_keyboard = 0;
 	} else {
-		for (i = 0; svkbdcmd[i]; i++)
-			if (svkbdcmd[i][0] == '\n')
-				break;
-		if (svkbdcmd[i] && svkbdcmd[i][0] == '\n') {
-			memset(size_kb, 0, 20);
-			sprintf(size_kb, "%dx%d", sw, sh / kb_height_div);
-			svkbdcmd[i] = size_kb;
+		if (i == 0) {
+			for (i = 0; svkbdcmd[i]; i++)
+				if (svkbdcmd[i][0] == '\n')
+					break;
 		}
+		memset(size_kb, 0, 20);
+		sprintf(size_kb, "%dx%d", sw, sh / kb_height_div);
+		svkbdcmd[i] = size_kb;
 		if ((pid = fork()) == 0) {
 			if (dpy)
 				close(ConnectionNumber(dpy));

@@ -2357,8 +2357,8 @@ void
 openkeyboard(const Arg *arg)
 {
 	struct sigaction sa;
+	int       i = 0;
 	static int       pid = 0;
-	static int       i = 0;
 	static char      size_kb[20] = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0

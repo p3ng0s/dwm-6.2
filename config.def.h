@@ -115,7 +115,7 @@ static const Rule rules[] = {
 	// Floating windows
 	{ "conky",     NULL,       NULL,          0,        0,        1,         -1 },
 	{ "ripdrag",    NULL,     NULL,          0,        0,        1,         -1 },
-	{ "zenity",       NULL,     NULL,          0,      0,        1,         -1 },
+	{ "zenity",       NULL,     NULL,          0,      1,        1,         -1 },
 	{ "Tint2",       NULL,     NULL,          511,      0,        1,         -1 },
 	{ "svkbd",       NULL,     NULL,          511,      0,        1,         -1 },
 	// Swalow windows

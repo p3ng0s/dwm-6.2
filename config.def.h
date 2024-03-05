@@ -191,7 +191,8 @@ static const char *xmenucmd[]  = { "xmenu_run","-fn", dmenufont, "-nb", theme_co
 	"-bc", theme_col_bg, NULL };
 
 static const char *termcmd[]  = { "st", NULL };
-static const char *termcmd_tmux[]  = { "st", "/etc/p3ng0s/tmuxer.sh", NULL };
+static const char *termcmd_tmux[]  = { "st", "tmux", NULL };
+static const char *termcmd_tmuxer[]  = { "st", "/etc/p3ng0s/tmuxer.sh", NULL };
 static const char *file_manager[]  = { "st", "ranger", NULL };
 static const char *news_feed[]  = { "st", "newsboat", NULL };
 static const char *email_viewer[]  = { "thunderbird", NULL };
@@ -223,7 +224,8 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd_tmux } },
-	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = termcmd_tmuxer } },
+	{ MODKEY|ControlMask|ShiftMask, XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockscreen} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = networkMange} },

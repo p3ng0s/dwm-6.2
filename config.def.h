@@ -51,9 +51,9 @@ static const char mon_name[]        = "eDP-1";
 // Autostart information
 static unsigned int child_pid = 0;
 # if defined(_LIVE_MODE_)
-static const char *(stup_prgs[13][7])    = {   // [Number_programs][Number_args]
+static const char *(stup_prgs[15][7])    = {   // [Number_programs][Number_args]
 # else
-static const char *(stup_prgs[12][7])    = {   // [Number_programs][Number_args]
+static const char *(stup_prgs[14][7])    = {   // [Number_programs][Number_args]
 # endif
 	/* prog path            arg1           arg2                          arg... */
 	{ "picom",              NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
@@ -62,11 +62,13 @@ static const char *(stup_prgs[12][7])    = {   // [Number_programs][Number_args]
 	{ "setxkbmap",          "-option",     "caps:escape",                NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "bash /etc/p3ng0s/bar.sh",     NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/xautolock", "-locker",     "/etc/p3ng0s/locker.sh",      "-time", "15",  NULL },
-	{ "/usr/lib/notification-daemon-1.0/notification-daemon",  NULL,     NULL, NULL, NULL, NULL, NULL },
+	{ "/usr/lib/notification-daemon-1.0/notification-daemon",       NULL, NULL, NULL, NULL, NULL, NULL },
+	{ "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",  NULL, NULL, NULL, NULL, NULL, NULL },
 	{ "/usr/bin/flameshot", NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "/usr/bin/conky -c /etc/p3ng0s/conkyconf",   NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "/usr/bin/tint2 -c /etc/p3ng0s/tint2conf", NULL,   NULL,    NULL, NULL },
-	{ "/usr/bin/redshift",  "-l48.856613:2.352222", "-b",               "1.0:0.6", NULL,  NULL, NULL },
+	{ "/usr/bin/redshift-gtk",  "-l48.856613:2.352222", "-b",               "1.0:0.6", NULL,  NULL, NULL },
+	{ "/usr/bin/eww",       NULL,          NULL,                    NULL, NULL,  NULL, NULL },
 # if defined(_LIVE_MODE_)
 	{ "bash",               "-c",          "sleep 5; sudo /usr/bin/calamares", NULL,   NULL,   NULL, NULL },
 # endif
@@ -208,14 +210,14 @@ static const char *keepass[] = { "keepass", NULL };
 
 static const char *soundManage[] = { "pavucontrol", NULL };
 
-static const char *lockscreen[]  = { "i3lock-fancy", "-p", "-t", "Oh hell no!", "-f", "Hack Regular Nerd Font Complete", NULL };
+static const char *lockscreen[]  = { "i3lock-fancy", "-p", "-t", "Oh hell no!", NULL };
 
-static const char *mutecmd[] = { "sound.sh", "=", NULL };
-static const char *volupcmd[] = { "sound.sh", "+", NULL };
-static const char *voldowncmd[] = { "sound.sh", "-", NULL };
+static const char *mutecmd[] = { "/home/p4p1/.local/share/pipx/venvs/status/bin/sound.sh", "=", NULL };
+static const char *volupcmd[] = { "/home/p4p1/.local/share/pipx/venvs/status/bin/sound.sh", "+", NULL };
+static const char *voldowncmd[] = { "/home/p4p1/.local/share/pipx/venvs/status/bin/sound.sh", "-", NULL };
 
-static const char *monMin[] = { "brightness.sh", "-", NULL };
-static const char *monMax[] = { "brightness.sh", "+", NULL };
+static const char *monMin[] = { "/home/p4p1/.local/share/pipx/venvs/status/bin/brightness.sh", "-", NULL };
+static const char *monMax[] = { "/home/p4p1/.local/share/pipx/venvs/status/bin/brightness.sh", "+", NULL };
 
 static const char *prtscrcmd[] = { "bash", "-c", "scrot $HOME/Pictures/screenshots/%Y-%m-%d-%H-%M-%S-1920x1080.png", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };

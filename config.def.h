@@ -202,7 +202,7 @@ static const char *file_manager_gui[]  = { "nautilus", NULL };
 static const char *networkMange[]  = { "st", "nmtui", NULL };
 static const char *music[]  = { "st", "mocp", NULL };
 
-static const char *browser[]  = { "firefox", NULL };
+static const char *browser[]  = { "qutebrowser", NULL };
 
 static const char *wireshark[] = { "wireshark", NULL };
 static const char *burp_suite[] = { "BurpSuitePro", NULL };

@@ -51,9 +51,9 @@ static const char mon_name[]        = "eDP-1";
 // Autostart information
 static unsigned int child_pid = 0;
 # if defined(_LIVE_MODE_)
-static const char *(stup_prgs[15][7])    = {   // [Number_programs][Number_args]
+static const char *(stup_prgs[16][7])    = {   // [Number_programs][Number_args]
 # else
-static const char *(stup_prgs[14][7])    = {   // [Number_programs][Number_args]
+static const char *(stup_prgs[15][7])    = {   // [Number_programs][Number_args]
 # endif
 	/* prog path            arg1           arg2                          arg... */
 	{ "picom",              NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
@@ -69,6 +69,7 @@ static const char *(stup_prgs[14][7])    = {   // [Number_programs][Number_args]
 	{ "bash",               "-c",          "/usr/bin/tint2 -c /etc/p3ng0s/tint2conf", NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/redshift-gtk",  "-l48.856613:2.352222", "-b",               "1.0:0.6", NULL,  NULL, NULL },
 	{ "/usr/bin/kdeconnectd",       NULL,          NULL,                    NULL, NULL,  NULL, NULL },
+	{ "/usr/bin/kdeconnect-indicator",       NULL,          NULL,                    NULL, NULL,  NULL, NULL },
 # if defined(_LIVE_MODE_)
 	{ "bash",               "-c",          "sleep 5; sudo /usr/bin/calamares", NULL,   NULL,   NULL, NULL },
 # endif

@@ -68,7 +68,7 @@ static const char *(stup_prgs[14][7])    = {   // [Number_programs][Number_args]
 	{ "bash",               "-c",          "/usr/bin/conky -c /etc/p3ng0s/conkyconf",   NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "/usr/bin/tint2 -c /etc/p3ng0s/tint2conf", NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/redshift-gtk",  "-l48.856613:2.352222", "-b",               "1.0:0.6", NULL,  NULL, NULL },
-	{ "/usr/bin/eww",       NULL,          NULL,                    NULL, NULL,  NULL, NULL },
+	{ "/usr/bin/kdeconnectd",       NULL,          NULL,                    NULL, NULL,  NULL, NULL },
 # if defined(_LIVE_MODE_)
 	{ "bash",               "-c",          "sleep 5; sudo /usr/bin/calamares", NULL,   NULL,   NULL, NULL },
 # endif
@@ -130,6 +130,8 @@ static const Rule rules[] = {
 	{ NULL,        NULL,       "ranger",      0,        1,        1,         -1 },
 	{ NULL,        NULL,       "newsboat",    0,        1,        1,         -1 },
 	{ NULL,        NULL,       "neomutt",     0,        1,        1,         -1 },
+	{ "gvim",      NULL,       NULL,          0,        1,        1,         -1 },
+	{ "mpv",       NULL,       NULL,          0,        1,        1,         -1 },
 };
 
 /* layout(s) */

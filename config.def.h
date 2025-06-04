@@ -51,9 +51,9 @@ static const char mon_name[]        = "eDP-1";
 // Autostart information
 static unsigned int child_pid = 0;
 # if defined(_LIVE_MODE_)
-static const char *(stup_prgs[16][7])    = {   // [Number_programs][Number_args]
-# else
 static const char *(stup_prgs[15][7])    = {   // [Number_programs][Number_args]
+# else
+static const char *(stup_prgs[14][7])    = {   // [Number_programs][Number_args]
 # endif
 	/* prog path            arg1           arg2                          arg... */
 	{ "picom",              NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
@@ -69,7 +69,6 @@ static const char *(stup_prgs[15][7])    = {   // [Number_programs][Number_args]
 	{ "bash",               "-c",          "/usr/bin/tint2 -c /etc/p3ng0s/tint2conf", NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/redshift-gtk",  "-l48.856613:2.352222", "-b",               "1.0:0.6", NULL,  NULL, NULL },
 	{ "/usr/bin/kdeconnectd",       NULL,          NULL,                    NULL, NULL,  NULL, NULL },
-	{ "/usr/bin/kdeconnect-indicator",       NULL,          NULL,                    NULL, NULL,  NULL, NULL },
 # if defined(_LIVE_MODE_)
 	{ "bash",               "-c",          "sleep 5; sudo /usr/bin/calamares", NULL,   NULL,   NULL, NULL },
 # endif
@@ -211,6 +210,8 @@ static const char *wireshark[] = { "wireshark", NULL };
 static const char *burp_suite[] = { "BurpSuitePro", NULL };
 static const char *keepass[] = { "keepass", NULL };
 
+static const char *kdeconnect[] = { "kdeconnect-app", NULL };
+
 static const char *soundManage[] = { "pavucontrol", NULL };
 
 static const char *lockscreen[]  = { "i3lock-fancy", "-p", "-t", "Oh hell no!", NULL };
@@ -251,6 +252,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_v,      spawn,          {.v = dmenuwin } },
 	{ MODKEY,                       XK_Tab,    spawn,          {.v = graphicalmenu } },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = burp_suite } },
+	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = kdeconnect } },
 	{ MODKEY,                       XK_b,      togglebar,      { 0 } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

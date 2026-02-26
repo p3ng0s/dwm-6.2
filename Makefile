@@ -6,9 +6,8 @@ include config.mk
 SRC = drw.c dwm.c util.c
 OBJ = ${SRC:.c=.o}
 OBJ_LIGHT = ${SRC:.c=.o-light}
-OBJ_LIVE = ${SRC:.c=.o-live}
 
-all: options dwm dwm-light dwm-live
+all: options dwm dwm-light
 
 options:
 	@echo dwm build options:
@@ -19,7 +18,6 @@ options:
 .c.o:
 	${CC} -c ${CFLAGS} $<
 	${CC} ${LFLAGS} -c ${CFLAGS} $< -o $@-light
-	${CC} ${LIVEFLAGS} -c ${CFLAGS} $< -o $@-live
 
 ${OBJ}: config.h config.mk
 
@@ -32,13 +30,9 @@ dwm: ${OBJ}
 dwm-light: ${OBJ_LIGHT}
 	${CC} ${LFLAGS} -o $@ ${OBJ_LIGHT} ${LDFLAGS}
 
-dwm-live: ${OBJ_LIVE}
-	${CC} ${LIVEFLAGS} -o $@ ${OBJ_LIVE} ${LDFLAGS}
-
 clean:
 	rm -f dwm ${OBJ} dwm-${VERSION}.tar.gz
 	rm -f dwm-light ${OBJ_LIGHT}
-	rm -f dwm-live ${OBJ_LIVE}
 
 dist: clean
 	mkdir -p dwm-${VERSION}
@@ -54,8 +48,6 @@ install: all
 	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm
 	cp -f dwm-light ${DESTDIR}${PREFIX}/bin
 	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm-light
-	cp -f dwm-live ${DESTDIR}${PREFIX}/bin
-	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm-live
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
@@ -64,6 +56,5 @@ uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
 		${DESTDIR}${MANPREFIX}/man1/dwm.1\
 		${DESTDIR}${PREFIX}/bin/dwm-light\
-		${DESTDIR}${PREFIX}/bin/dwm-live
 
 .PHONY: all options clean dist install uninstall

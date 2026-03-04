@@ -294,7 +294,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 	{ 0, XK_Print, spawn, {.v = prtscrcmd } },
 	{ 0, XK_Menu, spawn, {.v = xmenucmd } },
-	{ 0, XK_Super_L, spawn, {.v = roficmd } },
+	{ 0, XK_Super_L, openkeyboard, {0} },
 	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
 
 	/***** Stealing these keys for the pine phone port ****/

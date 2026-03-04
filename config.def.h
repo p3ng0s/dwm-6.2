@@ -52,7 +52,11 @@ static const char mon_name[]        = "eDP-1";
 static unsigned int child_pid = 0;
 static const char *(stup_prgs[16][7])    = {   // [Number_programs][Number_args]
 	/* prog path            arg1           arg2                          arg... */
+# if defined(_LIVE_MODE_)
+	{ "picom",              "--config",    "~/.config/picom/picom-vm.conf",                         NULL,   NULL,    NULL, NULL },
+# else
 	{ "picom",              NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
+# endif
 	{ "blueman-applet",     NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "bash /etc/p3ng0s/display.sh",     NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "feh --bg-fill $HOME/.wallpaper.png", NULL,   NULL,    NULL, NULL },

@@ -62,7 +62,7 @@ static const char *(stup_prgs[16][7])    = {   // [Number_programs][Number_args]
 	{ "bash",               "-c",          "feh --bg-fill $HOME/.wallpaper.png", NULL,   NULL,    NULL, NULL },
 	{ "setxkbmap",          "-option",     "caps:escape",                NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "bash /etc/p3ng0s/bar.sh",     NULL,   NULL,    NULL, NULL },
-	{ "/usr/bin/xautolock", "-locker",     "/etc/p3ng0s/locker.sh",      "-time", "15",  NULL },
+	{ "/usr/bin/xss-lock",  "--",          "/etc/p3ng0s/locker.sh",      NULL, NULL,  NULL },
 	{ "/usr/lib/notification-daemon-1.0/notification-daemon",       NULL, NULL, NULL, NULL, NULL, NULL },
 	{ "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",  NULL, NULL, NULL, NULL, NULL, NULL },
 	{ "/usr/bin/flameshot", NULL,          NULL,                         NULL,   NULL,    NULL, NULL },

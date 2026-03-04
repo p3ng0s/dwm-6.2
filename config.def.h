@@ -299,7 +299,7 @@ static Key keys[] = {
 
 	/***** Stealing these keys for the pine phone port ****/
 	{ 0, XF86XK_AudioLowerVolume, openkeyboard, {0} },
-	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = roficmd } },
+	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = browser } },
 	{ 0, XF86XK_PowerOff, spawn, { .v =  termcmd_tmux  } },
 	/***** Stealing these keys for the pine phone port ****/
 

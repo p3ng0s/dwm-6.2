@@ -209,6 +209,7 @@ static const char *burp_suite[] = { "BurpSuitePro", NULL };
 static const char *keepass[] = { "keepass", NULL };
 
 static const char *kdeconnect[] = { "kdeconnect-app", NULL };
+static const char *notification[] = { "dunstctl", "history-pop", NULL };
 
 static const char *soundManage[] = { "pavucontrol", NULL };
 
@@ -251,6 +252,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    spawn,          {.v = graphicalmenu } },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = burp_suite } },
 	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = kdeconnect } },
+	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = notification } },
 	{ MODKEY,                       XK_b,      togglebar,      { 0 } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

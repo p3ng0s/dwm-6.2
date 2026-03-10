@@ -62,7 +62,7 @@ static const char *(stup_prgs[15][7])    = {   // [Number_programs][Number_args]
 	{ "bash",               "-c",          "feh --bg-fill $HOME/.wallpaper.png", NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "bash /etc/p3ng0s/bar.sh",     NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/xss-lock",  "--",          "/etc/p3ng0s/locker.sh",      NULL, NULL,  NULL },
-	{ "/usr/lib/notification-daemon-1.0/notification-daemon",       NULL, NULL, NULL, NULL, NULL, NULL },
+	{ "/usr/bin/dunst",       NULL, NULL, NULL, NULL, NULL, NULL },
 	{ "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",  NULL, NULL, NULL, NULL, NULL, NULL },
 	{ "/usr/bin/flameshot", NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "/usr/bin/conky -c /etc/p3ng0s/conkyconf",   NULL,   NULL,    NULL, NULL },
@@ -214,12 +214,12 @@ static const char *soundManage[] = { "pavucontrol", NULL };
 
 static const char *lockscreen[]  = { "i3lock-fancy", "-p", "-t", "Oh hell no!", NULL };
 
-static const char *mutecmd[] = { "/home/p4p1/.local/share/pipx/venvs/status/bin/sound.sh", "=", NULL };
-static const char *volupcmd[] = { "/home/p4p1/.local/share/pipx/venvs/status/bin/sound.sh", "+", NULL };
-static const char *voldowncmd[] = { "/home/p4p1/.local/share/pipx/venvs/status/bin/sound.sh", "-", NULL };
+static const char *mutecmd[] = { "/opt/dev/dwmstat/bin/sound.sh", "=", NULL };
+static const char *volupcmd[] = { "/opt/dev/dwmstat/bin/sound.sh", "+", NULL };
+static const char *voldowncmd[] = { "/opt/dev/dwmstat/bin/sound.sh", "-", NULL };
 
-static const char *monMin[] = { "/home/p4p1/.local/share/pipx/venvs/status/bin/brightness.sh", "-", NULL };
-static const char *monMax[] = { "/home/p4p1/.local/share/pipx/venvs/status/bin/brightness.sh", "+", NULL };
+static const char *monMin[] = { "/opt/dev/dwmstat/bin/brightness.sh", "-", NULL };
+static const char *monMax[] = { "/opt/dev/dwmstat/bin/brightness.sh", "+", NULL };
 
 static const char *prtscrcmd[] = { "bash", "-c", "scrot $HOME/Pictures/screenshots/%Y-%m-%d-%H-%M-%S-1920x1080.png", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };

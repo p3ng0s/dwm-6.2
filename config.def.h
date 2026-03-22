@@ -50,12 +50,17 @@ static const char mon_name[]        = "eDP-1";
 
 // Autostart information
 static unsigned int child_pid = 0;
+# if defined(_LIVE_MODE_)
+static const char *(stup_prgs[14][7])    = {   // [Number_programs][Number_args]
+# else
 static const char *(stup_prgs[15][7])    = {   // [Number_programs][Number_args]
+# endif
 	/* prog path            arg1           arg2                          arg... */
 # if defined(_LIVE_MODE_)
 	{ "picom",              "--config",    "/home/p4p1-live/.config/picom/picom-vm.conf",                         NULL,   NULL,    NULL, NULL },
 # else
 	{ "picom",              NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
+	{ "bash",               "-c",          "/usr/bin/tint2 -c /etc/p3ng0s/tint2conf", NULL,   NULL,    NULL, NULL },
 # endif
 	{ "blueman-applet",     NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "bash /etc/p3ng0s/display.sh",     NULL,   NULL,    NULL, NULL },
@@ -66,7 +71,6 @@ static const char *(stup_prgs[15][7])    = {   // [Number_programs][Number_args]
 	{ "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",  NULL, NULL, NULL, NULL, NULL, NULL },
 	{ "/usr/bin/flameshot", NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "/usr/bin/conky -c /etc/p3ng0s/conkyconf",   NULL,   NULL,    NULL, NULL },
-	{ "bash",               "-c",          "/usr/bin/tint2 -c /etc/p3ng0s/tint2conf", NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "sleep 30 && /usr/bin/kdeconnect-indicator", NULL,   NULL,    NULL, NULL }, // This needs a sleep since it bugs out with tint2 if you dont give it time to load
 	{ "/usr/bin/redshift-gtk",  "-l48.856613:2.352222", "-b",               "1.0:0.6", NULL,  NULL, NULL },
 	{ "/usr/bin/kdeconnectd",       NULL,          NULL,                    NULL, NULL,  NULL, NULL },

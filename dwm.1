@@ -81,13 +81,20 @@ Start
 with
 .BR tmux(1).
 .TP
+.B Mod\-Shift\-Ctrl-Return
+Start
+.BR st(1)
+with
+.BR tmux(1)
+on the session that is currently not attached.
+.TP
 .B Mod\-Ctrl-Return
 Start
 .BR st(1).
 .TP
 .B Mod\-Shift\-Return
 Start
-.BR firefox
+.BR qutebrowser(1)
 .TP
 .B Mod\-space
 Spawn
@@ -98,28 +105,13 @@ for launching other programs.
 Locks the screen with
 .BR i3lock-fancy(1)
 .TP
-.B Mod\-Shift\-b
-Spawn
-.BR Burpsuite
-to do web application penetration tests.
-.TP
 .B Mod\-w
-Open the wifi manager page.
+Open the wifi manager page
+.BR nmtui(1).
 .TP
 .B Mod\-Shift\-w
 Open
-.BR wireshark(1)
-as root.
-.TP
-.B Mod\-Shift\-f
-Open
-.BR keepass
-to manage your passwords.
-.TP
-.B Mod\-f
-Open
-.BR newsboat(1)
-in a floating window.
+.BR wireshark(1).
 .TP
 .B Mod\-Shift\-s
 Open the sound manager
@@ -128,47 +120,98 @@ Open the sound manager
 .B Mod\-Shift\-p
 Opens a menu to shutdown or reboot your computer.
 .TP
-.B Mod\-Shift\-j
-Turns brightness down.
-.TP
-.B Mod\-Shift\-k
-Turns brightness up.
+.B Mod\-p
+Spawn dmenu with a list of custom shortcuts to make X11 autotype.
 .TP
 .B Mod\-r
 Spawn
 .BR ranger(https://ranger.github.io/).
 .TP
-.B Mod\-Shift\-m
-Spawns dmenu with a list to all of the manpages and opens them in a pdf viewer.
-.TP
-.B Mod\-n
-Switch to icon tags.
-.TP
-.B Mod\-p
-Open a menu with shortcuts to execute commands from disabling windows defender to creating windows backdoor accounts.
-.TP
-.B Super
-Open
-.BR rofi(1).
-.TP
 .B Mod\-Shift\-r
 Spawn
 .BR nautilus(1).
 .TP
-.B Mod\-,
-Focus previous screen, if any.
+.B Mod\-Shift\-d
+Start
+.BR display.sh
+to set the display to the correct layout.
 .TP
-.B Mod\-.
-Focus next screen, if any.
+.B Mod\-f
+Open
+.BR newsboat(1)
+in a floating window.
 .TP
-.B Mod\-Shift\-,
-Send focused window to previous screen, if any.
+.B Mod\-Shift\-f
+Open
+.BR keepass
+password manager.
 .TP
-.B Mod\-Shift\-.
-Send focused window to next screen, if any.
+.B Mod\-Shift\-m
+Spawns dmenu with a list to all of the manpages and opens them in a pdf viewer.
+.TP
+.B Mod\-o
+Spawns dmenu with a list to all of the emojis available.
+.TP
+.B Mod\-Shift\-o
+Spawns dmenu with a list of all of the .ovpn files and allows you to connect using them.
+.TP
+.B Mod\-a
+Open
+.BR mocp(1)
+in a new terminal.
+.TP
+.B Mod\-x
+Open
+.BR flameshot(1).
+.TP
+.B Mod\-v
+Spawn dmenu VM management tool for windows VMs.
+.TP
+.B Mod\-Tab
+Open skippy-xd
+.TP
+.B Mod\-Shift\-b
+Spawn
+.BR Burpsuite
+to do web application penetration tests.
+.TP
+.B Mod\-Shift\-k
+Spawn
+.BR kdeconnect
+to connect your computer to your phone.
+.TP
+.B Mod\-Shift\-n
+view the latest notification
 .TP
 .B Mod\-b
 Toggles bar on and off.
+.TP
+.B Mod\-j
+Focus next window.
+.TP
+.B Mod\-k
+Focus previous window.
+.TP
+.B Mod\-i
+Increase number of windows in master area.
+.TP
+.B Mod\-Shift\-i
+Decrease number of windows in master area.
+.TP
+.B Mod\-l
+Increase master area size.
+.TP
+.B Mod\-h
+Decrease master area size.
+.TP
+.B Mod\-Shift\-Space
+Zooms/cycles focused window to/from master area (tiled layouts only).
+.TP
+.B Mod\-Shift\-Tab
+Toggles to the previously selected tags.
+.TP
+.B Mod\-Shift\-q
+Close focused window.
 .TP
 .B Mod\-t
 Sets tile layout.
@@ -185,44 +228,53 @@ Sets monocle layout.
 .B Mod\-s
 Sets spiral layout.
 .TP
-.B Mod\-j
-Focus next window.
-.TP
-.B Mod\-k
-Focus previous window.
-.TP
-.B Mod\-i
-Increase number of windows in master area.
-.TP
-.B Mod\-o
-Decrease number of windows in master area.
-.TP
-.B Mod\-l
-Increase master area size.
-.TP
-.B Mod\-h
-Decrease master area size.
-.TP
-.B Mod\-Shift\-Space
-Zooms/cycles focused window to/from master area (tiled layouts only).
-.TP
-.B Mod\-Shift\-q
-Close focused window.
-.TP
 .B Mod\-Shift\-u
 Toggle focused window between tiled and floating state.
 .TP
-.B Mod\-Shift\-Tab
-Toggles to the previously selected tags.
-.TP
-.B Mod\-Tab
-Open the skippy-xd windows viewer.
-.TP
-.B Mod\-Shift\-[1..n]
-Apply nth tag to focused window.
+.B Mod\-0
+View all windows with any tag.
 .TP
 .B Mod\-Shift\-0
 Apply all tags to focused window.
+.TP
+.B Mod\-,
+Focus previous screen, if any.
+.TP
+.B Mod\-.
+Focus next screen, if any.
+.TP
+.B Mod\-Shift\-,
+Send focused window to previous screen, if any.
+.TP
+.B Mod\-Shift\-.
+Send focused window to next screen, if any.
+.TP
+.B Mod\-minus.
+Decrease gap size.
+.TP
+.B Mod\-Shift\-plus.
+increase gap size.
+.TP
+.B Mod\-equal.
+Reset gap size.
+.TP
+.B Mod\-n.
+Set alternate tag style.
+.TP
+.B Mod\-Shift\-Left
+Turns brightness down.
+.TP
+.B Mod\-Shift\-Right
+Turns brightness up.
+.TP
+.B Mod\-Shift\-Up
+Turns sound up.
+.TP
+.B Mod\-Shift\-Down
+Turns sound down.
+.TP
+.B Mod\-Shift\-[1..n]
+Apply nth tag to focused window.
 .TP
 .B Mod\-Control\-Shift\-[1..n]
 Add/remove nth tag to/from focused window.
@@ -230,15 +282,15 @@ Add/remove nth tag to/from focused window.
 .B Mod\-[1..n]
 View all windows with nth tag.
 .TP
-.B Mod\-0
-View all windows with any tag.
-.TP
 .B Mod\-Control\-[1..n]
 Add/remove all windows with nth tag to/from the view.
 .TP
 .B Mod\-Shift\-e
 Quit dwm.
 .SS Mouse commands
+.TP
+.B Button2
+Launch xmenu.
 .TP
 .B Mod\-Button1
 Move focused window while dragging. Tiled windows will be toggled to the floating state.

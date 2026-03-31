@@ -7,7 +7,7 @@ dwm fork for p3ng0s ^^ maintained by me over the years.
  - [dwm-virtualkb-6.4.diff](https://gist.github.com/p4p1/fd1c74ad19ae91035b851170bc00e7e9)
  - [dwm-sticky-6.2.diff](https://gist.github.com/p4p1/234b0a27b5968226cf5c1df918e4ed28)
  - [dwm-startupcommands-6.2.diff](https://gist.github.com/p4p1/0b900a284f60efd3dde9508550a123f1)
- - [dwm-fibonaccigaps-6.2.diff](https://gist.github.com/p4p1/9091635c66e621967092e3e1ff8e7f8c)A
+ - [dwm-fibonaccigaps-6.2.diff](https://gist.github.com/p4p1/9091635c66e621967092e3e1ff8e7f8c)
  - [dwm-alternativetags-6.2.diff](https://dwm.suckless.org/patches/alternativetags/dwm-alternativetags-6.3.diff)
  - [dwm-barpadding-6.2.diff](https://dwm.suckless.org/patches/barpadding/dwm-barpadding-6.2.diff)
  - [dwm-center-6.2.diff](https://dwm.suckless.org/patches/center/dwm-center-6.2.diff)

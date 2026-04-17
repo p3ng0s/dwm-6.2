@@ -165,8 +165,6 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *svkbdcmd[] = { "svkbd-p3ng0s", "-fn", svkbdfont, "-r", "20", "-g", "\n", NULL };
-static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", "-theme",
-	"/etc/p3ng0s/rofi.rasi", NULL };
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont,
 	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
@@ -184,6 +182,9 @@ static const char *dmenukeyb[] = { "dmenu_keyboard", "-fn", dmenufont,
 	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
 	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };
 static const char *dmenuovpn[] = { "dmenu_ovpn", "-fn", dmenufont,
+	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
+	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };
+static const char *dmenuvideo[] = { "dmenu_video", "-fn", dmenufont,
 	"-nb", theme_col_fg, "-nf", theme_col_bg, "-sb", theme_col_bg, "-sf", theme_col_fg,
 	"-h", "25", "-bw", "p", "-l", "15", "-p", "$", "-b", NULL };
 static const char *dmenuemoji[] = { "dmenu_emoji", "-nb", theme_col_fg, "-nf",
@@ -253,6 +254,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_a,      spawn,          {.v = music } },
 	{ MODKEY,                       XK_x,      spawn,          {.v = flameshot } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = dmenuwin } },
+	{ MODKEY|ShiftMask,             XK_v,      spawn,          {.v = dmenuvideo } },
 	{ MODKEY,                       XK_Tab,    spawn,          {.v = graphicalmenu } },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = burp_suite } },
 	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = kdeconnect } },

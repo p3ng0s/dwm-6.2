@@ -132,6 +132,8 @@ static const Rule rules[] = {
 	{ NULL,        NULL,       "ranger",      0,        1,        1,         -1 },
 	{ NULL,        NULL,       "newsboat",    0,        1,        1,         -1 },
 	{ NULL,        NULL,       "neomutt",     0,        1,        1,         -1 },
+	{ NULL,        NULL,       "mocp",     0,        1,        1,         -1 },
+	{ NULL,        NULL,       "TigerVNC",     0,        1,        1,         -1 },
 	{ "gvim",      NULL,       NULL,          0,        1,        1,         -1 },
 	{ "mpv",       NULL,       NULL,          0,        1,        1,         -1 },
 };

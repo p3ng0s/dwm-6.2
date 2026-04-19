@@ -213,7 +213,7 @@ static const char *browser[]  = { "qutebrowser", NULL };
 
 static const char *wireshark[] = { "wireshark", NULL };
 static const char *burp_suite[] = { "BurpSuitePro", NULL };
-static const char *keepass[] = { "keepass", NULL };
+static const char *keepass[] = { "keepassxc", NULL };
 
 static const char *kdeconnect[] = { "kdeconnect-app", NULL };
 static const char *notification[] = { "dunstctl", "history-pop", NULL };

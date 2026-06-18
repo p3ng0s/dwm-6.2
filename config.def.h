@@ -68,10 +68,13 @@ static const char *(stup_prgs[15][7])    = {   // [Number_programs][Number_args]
 	{ "bash",               "-c",          "bash /etc/p3ng0s/bar.sh",     NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/xss-lock",  "--",          "/etc/p3ng0s/locker.sh",      NULL, NULL,  NULL },
 	{ "/usr/bin/dunst",       NULL, NULL, NULL, NULL, NULL, NULL },
+	{ "setxkbmap",          "-option",     "caps:escape",       , NULL, NULL, NULL, NULL },
 	{ "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",  NULL, NULL, NULL, NULL, NULL, NULL },
 	{ "/usr/bin/flameshot", NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "/usr/bin/conky -c /etc/p3ng0s/conkyconf",   NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "sleep 30 && /usr/bin/kdeconnect-indicator", NULL,   NULL,    NULL, NULL }, // This needs a sleep since it bugs out with tint2 if you dont give it time to load
+	{ "bash",               "-c",          "systemctl --user start xdg-desktop-portal", NULL,   NULL,    NULL, NULL }, // This needs a sleep since it bugs out with tint2 if you dont give it time to load
+	{ "bash",               "-c",          "systemctl --user start xdg-desktop-portal-gtk", NULL,   NULL,    NULL, NULL }, // This needs a sleep since it bugs out with tint2 if you dont give it time to load
 	{ "/usr/bin/redshift-gtk",  "-l48.856613:2.352222", "-b",               "1.0:0.6", NULL,  NULL, NULL },
 	{ "/usr/bin/kdeconnectd",       NULL,          NULL,                    NULL, NULL,  NULL, NULL },
 	{ NULL,                 NULL,          NULL,                         NULL,   NULL,    NULL, NULL }

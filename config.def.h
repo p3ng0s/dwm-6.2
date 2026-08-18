@@ -51,9 +51,9 @@ static const char mon_name[]        = "eDP-1";
 // Autostart information
 static unsigned int child_pid = 0;
 # if defined(_LIVE_MODE_)
-static const char *(stup_prgs[14][7])    = {   // [Number_programs][Number_args]
-# else
 static const char *(stup_prgs[15][7])    = {   // [Number_programs][Number_args]
+# else
+static const char *(stup_prgs[17][7])    = {   // [Number_programs][Number_args]
 # endif
 	/* prog path            arg1           arg2                          arg... */
 # if defined(_LIVE_MODE_)
@@ -64,11 +64,11 @@ static const char *(stup_prgs[15][7])    = {   // [Number_programs][Number_args]
 # endif
 	{ "blueman-applet",     NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "bash /etc/p3ng0s/display.sh",     NULL,   NULL,    NULL, NULL },
+	{ "bash",               "-c",          "setxkbmap -option caps:escape", NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "feh --bg-fill $HOME/.wallpaper.png", NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "bash /etc/p3ng0s/bar.sh",     NULL,   NULL,    NULL, NULL },
 	{ "/usr/bin/xss-lock",  "--",          "/etc/p3ng0s/locker.sh",      NULL, NULL,  NULL },
 	{ "/usr/bin/dunst",       NULL, NULL, NULL, NULL, NULL, NULL },
-	{ "setxkbmap",          "-option",     "caps:escape",       , NULL, NULL, NULL, NULL },
 	{ "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",  NULL, NULL, NULL, NULL, NULL, NULL },
 	{ "/usr/bin/flameshot", NULL,          NULL,                         NULL,   NULL,    NULL, NULL },
 	{ "bash",               "-c",          "/usr/bin/conky -c /etc/p3ng0s/conkyconf",   NULL,   NULL,    NULL, NULL },
